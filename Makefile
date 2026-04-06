@@ -1,22 +1,28 @@
-CC = g++
-CCFLAGS = -std=c++17 -Wall -Wextra -O2
-CC_SRC = hello.cpp
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+CC = gcc
+CFLAGS = -std=c11 -Wall -Wextra -O2
+SRCDIR = .
 
-GCC = gcc
-GCCFLAGS = -std=c11 -Wall -Wextra -O2
-GCC_SRC = helloinc.c
+# discover sources
+CPP_SRCS := $(wildcard $(SRCDIR)/*.cpp)
+C_SRCS := $(wildcard $(SRCDIR)/*.c)
 
-TARGETS = hello helloinc
+# targets match source basenames
+CPP_TARGETS := $(patsubst $(SRCDIR)/%.cpp,%,$(CPP_SRCS))
+C_TARGETS := $(patsubst $(SRCDIR)/%.c,%,$(C_SRCS))
+
+TARGETS := $(CPP_TARGETS) $(C_TARGETS)
 
 .PHONY: all clean run
 
 all: $(TARGETS)
 
-hello: $(CC_SRC)
-	$(CC) $(CCFLAGS) $< -o $@
+$(CPP_TARGETS): %: %.cpp
+	$(CXX) $(CXXFLAGS) $< -o $@
 
-helloinc: $(GCC_SRC)
-	$(GCC) $(GCCFLAGS) $< -o $@
+$(C_TARGETS): %: %.c
+	$(CC) $(CFLAGS) $< -o $@
 
 run: hello
 	./hello
