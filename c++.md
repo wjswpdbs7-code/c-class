@@ -6,3 +6,18 @@ c와 c++의 차이점
 
 C와 C++는 모두 프로그래밍 언어이지만, C++는 C의 확장판으로 객체 지향 프로그래밍을 지원합니다. C는 절차적 프로그래밍 언어로, 함수와 구조체를 중심으로 코드를 작성하는 반면, C++는 클래스와 객체를 사용하여 코드를 작성할 수 있습니다. 또한, C++는 템플릿, 예외 처리, 네임스페이스 등 다양한 기능을 추가하여 더 강력한 프로그래밍이 가능합니다.
 
+```c
+#include <stdio.h>
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+```
+c++에서
+```cpp#include <iostream>
+int main() {
+    std::cout << "Hello, World!" << std::endl;// 줄해석 :
+    return 0;
+}
+```
+
